@@ -1,0 +1,23 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class AggroDetection : MonoBehaviour
+{
+    public event Action<Transform> OnAggro = delegate { };
+    private void OnTriggerEnter(Collider other)
+    {
+        var player = other.GetComponent<MovementController>();
+        if(player !=null)
+        {
+            OnAggro(player.transform); //navmesh yerine kullandýk.
+            Debug.Log("Aggro Detected");
+           
+            
+        }
+    }
+
+   
+}
